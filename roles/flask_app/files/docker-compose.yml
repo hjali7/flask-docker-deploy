@@ -1,0 +1,6 @@
+services:
+  flask:
+    build: .
+    ports:
+      - "{{ flask_project_port }}:5000"
+    container_name: flask_container

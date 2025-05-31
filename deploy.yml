@@ -1,0 +1,14 @@
+- name : Deploy Flask app with Docker , Nginx and firewall
+  hosts: localhost
+  become : true
+  vars:
+    flask_project_name: flask_app
+    flask_project_port: 5000
+    flask_docker_image: flaskapp:latest
+    domain_name : localhost
+  
+  roles:
+  - docker
+  - flask_app
+  - nginx
+  - firewall

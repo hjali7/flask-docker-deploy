@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Docker
+*.log
+*.pid
+.env
+docker-compose.override.yml
+
+# Ansible facts
+.fact_cache/
+
+# System
+.DS_Store
+.vscode/
+.idea/

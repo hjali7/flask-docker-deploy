@@ -1,0 +1,21 @@
+---
+- name : create flask app directory
+  file:
+    path: /opt/{{ flask_project_name }}
+    state: directory
+- name : copy dockerfile
+  copy:
+    src: Dockerfile
+    dest: /opt/{{ flask_project_name }}/Dockerfile
+- name : copy app.py
+  copy:
+    src: app.py
+    dest: /opt/{{ flask_project_name }}/app.py
+- name : copy docker-compose.yml
+  copy:
+    src: docker-compose.yml
+    dest: /opt/{{ flask_project_name }}/docker-compose.yml
+- name : run docker compose up
+  shell : docker compose up -d
+  args:
+    chdir: /opt/{{ flask_project_name }}

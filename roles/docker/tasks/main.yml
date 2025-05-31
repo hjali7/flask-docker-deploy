@@ -1,0 +1,34 @@
+---
+- name : Install dependencies for Docker
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+    update_cache: yes
+- name : Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+- name : Add Docker hub
+  apt_repository:
+    state: present
+    filename: docker
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable"
+- name : Install Docker compose and Docker engine
+  apt:
+    name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose-plugin
+    state: present
+    update_cache: yes
+- name : Check Docker start
+  systemd:
+    name: docker
+    state: started
+    enabled: true
